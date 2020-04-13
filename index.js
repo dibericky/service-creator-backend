@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const fastify = require('fastify')({
       logger: true
 })
@@ -21,7 +23,7 @@ fastify.post('/init', async function (request, reply) {
   })
 })
 
-fastify.listen(3000, (err, address) => {
+fastify.listen(process.env.PORT || 3000, (err, address) => {
       if (err) throw err
       fastify.log.info(`server listening on ${address}`)
 })

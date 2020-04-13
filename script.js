@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const routesGenerator = require('./routesGenerator')
 const GithubClient = require('./GithubClient')
 const mapInitFiles = require('./createFiles')
