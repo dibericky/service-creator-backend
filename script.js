@@ -13,7 +13,7 @@ module.exports = function (fastify, opts, done) {
         filePath: 'routes/index.js',
         content: routesGenerator(routes)
     }
-    this.githubClient.commitFiles(
+    await this.githubClient.commitFiles(
         [fileRoutes],
         message,
         user,
@@ -23,7 +23,7 @@ module.exports = function (fastify, opts, done) {
   })
   fastify.decorate('initRepository', async function (user, repoName, branch) {
     const message = 'Init service'
-    this.githubClient.commitFiles(
+    await this.githubClient.commitFiles(
       initFiles,
       message,
       user,
