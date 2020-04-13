@@ -46,3 +46,14 @@ Content-Type: application/json
     "branch": "master"
 }
 ```
+
+
+### K8S
+
+```
+docker build -t your-registry/service-creator-backend:latest .
+
+docker push your-registry/service-creator-backend:latest
+
+kubectl apply -f ./service-creator-backend.yml
+```

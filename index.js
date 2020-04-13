@@ -23,7 +23,11 @@ fastify.post('/init', async function (request, reply) {
   })
 })
 
-fastify.listen(process.env.PORT || 3000, (err, address) => {
+fastify.get('/is-up', function (request, reply) {
+  reply.send({status: 'ok'})
+})
+
+fastify.listen(3000, '0.0.0.0', (err, address) => {
       if (err) throw err
       fastify.log.info(`server listening on ${address}`)
 })

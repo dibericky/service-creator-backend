@@ -1,0 +1,42 @@
+# APP DEPLOYMENT
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-creator-backend
+spec:
+  selector:
+    matchLabels:
+      run: service-creator-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: service-creator-backend
+    spec:
+      containers:
+      - name: service-creator-backend
+        image: localhost:32000/service-creator-backend:latest
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+
+
+---
+
+# APP SERVICE
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-creator-backend
+  labels:
+    run: service-creator-backend
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    run: service-creator-backend
+  type: LoadBalancer
