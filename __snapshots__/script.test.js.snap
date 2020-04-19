@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`initRepository calls githubClient.commitFiles with correct initial files .gitignore 1`] = `
+"# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+"
+`;
+
+exports[`initRepository calls githubClient.commitFiles with correct initial files index.js 1`] = `
+"const fastify = require('fastify')({
+    logger: true
+  })
+  
+  fastify.register(require('./registerRoutes'))
+  
+  fastify.listen(3000, (err, address) => {
+    if (err) throw err
+    fastify.log.info(\`server listening on \${address}\`)
+  })"
+`;
+
+exports[`initRepository calls githubClient.commitFiles with correct initial files package.json 1`] = `
+"{
+  \\"name\\": \\"serverless-function-test\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"description\\": \\"\\",
+  \\"main\\": \\"index.js\\",
+  \\"scripts\\": {
+    \\"test\\": \\"test\\",
+    \\"start\\": \\"node index\\"
+  },
+  \\"author\\": \\"Riccardo Di Benedetto\\",
+  \\"license\\": \\"ISC\\",
+  \\"dependencies\\": {
+    \\"fastify\\": \\"^2.13.1\\"
+  }
+}"
+`;
+
+exports[`initRepository calls githubClient.commitFiles with correct initial files registerRoutes.js 1`] = `
+"const routes = require('./routes')
+
+module.exports = function (fastify, opts, done) {
+  
+    routes.forEach(route => {
+        const {method, path, handler} = route
+        fastify[method](path, handler)
+    })
+
+  done()
+}
+"
+`;
+
+exports[`initRepository calls githubClient.commitFiles with correct initial files routes/index.js 1`] = `"module.exports = []"`;
+
+exports[`updateRoutes when there are NO dependency added calls githubClient.commitFiles only routes 1`] = `
+"
+module.exports = [
+    {
+        method: \\"get\\",
+        path: \\"/foo\\",
+        handler: function (req, res) {
+            res.send({foo: 'bar'})
+        }
+        
+    },
+    {
+        method: \\"post\\",
+        path: \\"/bar\\",
+        handler: function (req, res) {
+            res.send({foo: req.body})
+        }
+        
+    },
+]
+"
+`;
+
+exports[`updateRoutes when there are dependency added calls githubClient.commitFiles with routes and packageJson updated 1`] = `
+"
+module.exports = [
+    {
+        method: \\"get\\",
+        path: \\"/foo\\",
+        handler: async function (req, res) {
+            const axios = require('axios')
+            const response = await axios.get('http://example.com/json')
+            res.send({foo: response.body})
+        }
+        
+    },
+    {
+        method: \\"post\\",
+        path: \\"/bar\\",
+        handler: function (req, res) {
+            res.send({foo: req.body})
+        }
+        
+    },
+]
+"
+`;
+
+exports[`updateRoutes when there are dependency added calls githubClient.commitFiles with routes and packageJson updated 2`] = `
+"{
+  \\"name\\": \\"serverless-function-test\\",
+  \\"version\\": \\"1.0.0\\",
+  \\"description\\": \\"\\",
+  \\"main\\": \\"index.js\\",
+  \\"scripts\\": {
+    \\"test\\": \\"test\\",
+    \\"start\\": \\"node index\\"
+  },
+  \\"author\\": \\"Riccardo Di Benedetto\\",
+  \\"license\\": \\"ISC\\",
+  \\"dependencies\\": {
+    \\"fastify\\": \\"^2.13.1\\",
+    \\"axios\\": \\"^0.19.2\\"
+  }
+}"
+`;

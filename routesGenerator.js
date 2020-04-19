@@ -16,15 +16,18 @@ module.exports = function (routes) {
         return variable.replace(/(['"])/g, '\\$1');
       });
     const template = Handlebars.compile(ROUTES_TEMPLATE, {noEscape: true})
-  /*  const routes = [{
-        method: 'get',
-        path: '/',
-        handler: `function(req, reply) {
-            reply.send({
-                foo: 'lorem'
-            })
-          }`
-    }]*/
+    /************************************************ 
+     * const routes = [{                            *
+     *      method: 'get'                           *
+     *      path: '/'                               *
+     *      handler: `function(req, reply) {        *
+     *          reply.send({                        *
+     *              foo: 'lorem'                    *
+     *          }                                   *
+     *      }                                       *
+     *  }                                           *
+     *                                              *
+     ************************************************/
     
     const routesGenerated = template({routes})
     return routesGenerated

@@ -1,20 +1,30 @@
 const routesGenerator = require('./routesGenerator')
-const GithubClient = require('./GithubClient')
-const mapInitFiles = require('./createFiles')
+const fileBuilder = require('./filesBuilder')
 
-const initFiles = getInitFiles(mapInitFiles)
-
-const accessToken = process.env.PERSONAL_ACCESS_TOKEN
+function getDependencies (additionalDependencies) {
+  return additionalDependencies
+    .reduce((acc, dependency) => {
+      return {
+        ...acc,
+        [dependency.name]: dependency.version
+      }
+    }, {})
+}
 
 module.exports = function (fastify, opts, done) {
-  fastify.decorate('githubClient', new GithubClient(accessToken))
-  fastify.decorate('updateRoutes', async function (user, repoName, message, branch, routes) {
+  fastify.decorate('filesBuilder', new fileBuilder.FilesBuilder())
+  
+  fastify.decorate('updateRoutes', async function (user, repoName, message, branch, routes, additionalDependencies=[]) {
     const fileRoutes = {
         filePath: 'routes/index.js',
         content: routesGenerator(routes)
     }
+    let files = [fileRoutes]
+    if (additionalDependencies.length > 0) {
+      files.push(this.filesBuilder.getPackageJson(getDependencies(additionalDependencies)))
+    }
     await this.githubClient.commitFiles(
-        [fileRoutes],
+        files,
         message,
         user,
         repoName,
@@ -24,7 +34,7 @@ module.exports = function (fastify, opts, done) {
   fastify.decorate('initRepository', async function (user, repoName, branch) {
     const message = 'Init service'
     await this.githubClient.commitFiles(
-      initFiles,
+      this.filesBuilder.getAllFiles(),
       message,
       user,
       repoName,
@@ -33,12 +43,4 @@ module.exports = function (fastify, opts, done) {
   })
 
   done()
-}
-
-
-function getInitFiles (mapInit) {
-  return Object.keys(mapInit).map(path => ({
-    filePath: path,
-    content: mapInit[path]
-  }))
 }
