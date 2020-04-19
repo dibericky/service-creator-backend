@@ -17,6 +17,10 @@ function getFilePathWithContent (filePath, content) {
       }
 }
 module.exports.FilesBuilder = class FilesBuilder {
+    constructor({user, repoName}) {
+        this.user = user
+        this.repoName = repoName
+    }
 
     getAllFiles() {
         return [
@@ -28,7 +32,11 @@ module.exports.FilesBuilder = class FilesBuilder {
         ]
     }
     getPackageJson(additionalDependency={}) {
-        const packageJson = packageJsonBuilder({dependencies: additionalDependency})
+        const packageJson = packageJsonBuilder({
+            dependencies: additionalDependency,
+            author: this.user,
+            name: this.repoName
+        })
         const stringifiedPackageJson = JSON.stringify(packageJson, null, 2)
         return getFilePathWithContent(PACKAGE_JSON_PATH, stringifiedPackageJson)
     }

@@ -42,7 +42,7 @@ exports[`initRepository calls githubClient.commitFiles with correct initial file
 
 exports[`initRepository calls githubClient.commitFiles with correct initial files package.json 1`] = `
 "{
-  \\"name\\": \\"serverless-function-test\\",
+  \\"name\\": \\"my-repo-name\\",
   \\"version\\": \\"1.0.0\\",
   \\"description\\": \\"\\",
   \\"main\\": \\"index.js\\",
@@ -50,7 +50,7 @@ exports[`initRepository calls githubClient.commitFiles with correct initial file
     \\"test\\": \\"test\\",
     \\"start\\": \\"node index\\"
   },
-  \\"author\\": \\"Riccardo Di Benedetto\\",
+  \\"author\\": \\"my-user\\",
   \\"license\\": \\"ISC\\",
   \\"dependencies\\": {
     \\"fastify\\": \\"^2.13.1\\"
@@ -125,7 +125,7 @@ module.exports = [
 
 exports[`updateRoutes when there are dependency added calls githubClient.commitFiles with routes and packageJson updated 2`] = `
 "{
-  \\"name\\": \\"serverless-function-test\\",
+  \\"name\\": \\"my-repo-name\\",
   \\"version\\": \\"1.0.0\\",
   \\"description\\": \\"\\",
   \\"main\\": \\"index.js\\",
@@ -133,7 +133,7 @@ exports[`updateRoutes when there are dependency added calls githubClient.commitF
     \\"test\\": \\"test\\",
     \\"start\\": \\"node index\\"
   },
-  \\"author\\": \\"Riccardo Di Benedetto\\",
+  \\"author\\": \\"my-user\\",
   \\"license\\": \\"ISC\\",
   \\"dependencies\\": {
     \\"fastify\\": \\"^2.13.1\\",

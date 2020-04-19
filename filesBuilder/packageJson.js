@@ -1,6 +1,10 @@
-module.exports = function ({dependencies={}}={}) {
+module.exports = function ({
+  dependencies={},
+  author,
+  name
+}={}) {
   return {
-    "name": "serverless-function-test",
+    "name": name,
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -8,7 +12,7 @@ module.exports = function ({dependencies={}}={}) {
       "test": "test",
       "start": "node index"
     },
-    "author": "Riccardo Di Benedetto",
+    "author": author,
     "license": "ISC",
     "dependencies": {
       "fastify": "^2.13.1",
