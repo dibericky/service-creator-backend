@@ -1,18 +1,19 @@
 require('dotenv').config()
 
-const GithubClient = require('./GithubClient')
-
 const fastify = require('fastify')({
-      logger: true
+  logger: true
 })
 const fp = require('fastify-plugin')
 
+const GithubClient = require('./GithubClient')
 
 const accessToken = process.env.PERSONAL_ACCESS_TOKEN
 
 fastify.decorate('githubClient', new GithubClient(accessToken))
 
 fastify.register(fp(require('./script')))
+
+fastify.register(fp(require('./dependencies')))
 
 fastify.post('/routes', async function (request, reply) {
   const {body} = request

@@ -16,7 +16,8 @@
     "fastify-plugin": "^1.6.1",
     "fs-extra": "^9.0.0",
     "globby": "^11.0.0",
-    "handlebars": "^4.7.6"
+    "handlebars": "^4.7.6",
+    "libnpmsearch": "^3.0.0"
   },
   "devDependencies": {
     "jest": "^25.3.0"
