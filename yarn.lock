@@ -713,17 +713,7 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-ajv@^6.10.2, ajv@^6.11.0, ajv@^6.12.0:
-  version "6.12.0"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.0.tgz#06d60b96d87b8454a5adaba86e7854da629db4b7"
-  integrity sha512-D6gFiFA0RRLyUbvijN74DWAjXSFxWKaWP7mldxkVhyhAV3+SWA9HEJPHQ2c9soIeTFJqcSdFDGFgdqs1iUU2Hw==
-  dependencies:
-    fast-deep-equal "^3.1.1"
-    fast-json-stable-stringify "^2.0.0"
-    json-schema-traverse "^0.4.1"
-    uri-js "^4.2.2"
-
-ajv@^6.5.5:
+ajv@^6.10.2, ajv@^6.11.0, ajv@^6.12.0, ajv@^6.5.5:
   version "6.12.1"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.1.tgz#cce4d7dfcd62d3c57b1cd772e688eff5f5cd3839"
   integrity sha512-AUh2mDlJDAnzSRaKkMHopTD1GKwC1ApUq8oCzdjAOM5tavncgqWU+JoRu5Y3iYY0Q/euiU+1LWp0/O/QY8CcHw==
@@ -1628,9 +1618,9 @@ fastify-plugin@^1.6.1:
     semver "^6.3.0"
 
 fastify@^2.13.1:
-  version "2.13.1"
-  resolved "https://registry.yarnpkg.com/fastify/-/fastify-2.13.1.tgz#38d9a5b030ddbc472b4ab756b584c5f0cc538593"
-  integrity sha512-ssh4CneRqWqYeHun03XicIcYxWXLEam5V9wHYSYm22yvSm91SnTzzajxs1w135rdZnT+VJ1MwOfToqwR6G5MoA==
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-2.14.0.tgz#296c300884bf9dbf403bac1723f3ae0f0325dfe4"
+  integrity sha512-uofJOU9Zf20iklDrACZZVe+qef6dswOe8IUnxUdHTY9QfHv301MgPxodvJFiRE2WAse7YrWr4sI5Lx6YIAuUAA==
   dependencies:
     abstract-logging "^2.0.0"
     ajv "^6.12.0"
