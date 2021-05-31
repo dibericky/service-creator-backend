@@ -20,6 +20,6 @@
     "libnpmsearch": "^3.0.0"
   },
   "devDependencies": {
-    "jest": "^26.0.0"
+    "jest": "^27.0.3"
   }
 }
